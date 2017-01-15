@@ -13,7 +13,9 @@ const Container = styled.div`
 const Inner = styled.div`
   display: flex;
   width: 100%;
-  max-width: ${props => props.theme.maxWidth || 500}px;
+  ${props => props.theme.innerMaxWidth ? (
+  `max-width: ${props.theme.innerMaxWidth}px;`
+  ) : ''}
   margin: 0 auto;
   padding: 1rem 1.6rem;
   font-size: 1.3em;

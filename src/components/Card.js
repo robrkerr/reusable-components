@@ -6,7 +6,7 @@ const Container = styled.div`
   flex-shrink: 0;
   flex-direction: column;
   width: 100%;
-  padding: 1rem;
+  padding: ${props => props.theme.padding || '1rem'};
   ${props => {
     const { theme } = props
     return (theme.bgHatched || theme.bgHatchAngle || theme.bgHatchWidth || theme.bgHatchColor) ? (
@@ -14,11 +14,11 @@ const Container = styled.div`
         ${theme.bgHatchAngle || '45'}deg,
         ${theme.bgHatchColor || 'grey'},
         ${theme.bgHatchColor || 'grey'} ${theme.bgHatchWidth || 10}px,
-        ${theme.bg || 'white'} ${theme.bgHatchWidth || 10}px,
-        ${theme.bg || 'white'} ${theme.bgHatchWidth*2 || 20}px
+        ${theme.bgColor || 'white'} ${theme.bgHatchWidth || 10}px,
+        ${theme.bgColor || 'white'} ${theme.bgHatchWidth*2 || 20}px
       );`
     ) : (
-      `background-color: ${theme.bg || 'white'};`
+      `background-color: ${theme.bgColor || 'white'};`
     )
   }}
 
@@ -30,12 +30,12 @@ const Container = styled.div`
 const Title = styled.div`
   width: 100%;
   font-size: 1.2em;
-  color: ${props => props.theme.main || 'palevioletred'};
+  color: ${props => props.theme.mainColor || 'palevioletred'};
 `
 
 const Details = styled.div`
   width: 100%;
-  color: ${props => props.theme.alt || 'grey'};
+  color: ${props => props.theme.altColor || 'grey'};
 `
 
 class Card extends Component {
@@ -45,11 +45,7 @@ class Card extends Component {
       <Container>
         <Details>{note}</Details>
         <Title>{title}</Title>
-        {
-          details ? (
-            <Details>{details}</Details>
-          ) : null
-        }
+        { details && <Details>{details}</Details> }
       </Container>
     )
   }

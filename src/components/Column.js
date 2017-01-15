@@ -16,7 +16,9 @@ const Container = styled.div`
 const Inner = styled.div`
   position: relative;
   width: 100%;
-  max-width: ${props => props.theme.maxWidth || 500}px;
+  ${props => props.theme.innerMaxWidth ? (
+  `max-width: ${props.theme.innerMaxWidth}px;`
+  ) : ''}
   margin: 0 auto;
   display: flex;
   flex-direction: column;
