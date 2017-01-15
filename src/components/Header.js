@@ -17,7 +17,7 @@ const Inner = styled.div`
   `max-width: ${props.theme.innerMaxWidth}px;`
   ) : ''}
   margin: 0 auto;
-  padding: 1rem 1.6rem;
+  padding: ${props => props.theme.paddingVertical || 1}rem ${props => 1.6*(props.theme.paddingHorizontal || 1)}rem;
   font-size: 1.3em;
   color: ${props => props.theme.color};
 `;

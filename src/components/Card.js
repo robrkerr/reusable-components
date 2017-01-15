@@ -6,7 +6,7 @@ const Container = styled.div`
   flex-shrink: 0;
   flex-direction: column;
   width: 100%;
-  padding: ${props => props.theme.padding || '1rem'};
+  padding: ${props => props.theme.padding || 1}rem;
   ${props => {
     const { theme } = props
     return (theme.bgHatched || theme.bgHatchAngle || theme.bgHatchWidth || theme.bgHatchColor) ? (
@@ -43,8 +43,8 @@ class Card extends Component {
     const { title, details, note } = this.props
     return (
       <Container>
-        <Details>{note}</Details>
-        <Title>{title}</Title>
+        { note && <Details>{note}</Details> }
+        { title && <Title>{title}</Title> }
         { details && <Details>{details}</Details> }
       </Container>
     )

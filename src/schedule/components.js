@@ -11,7 +11,6 @@ const Main = adaptTheme(theme => ({
 
 const ScrollableColumn = adaptTheme(theme => ({
   childSpacing: theme.spacing,
-  padding: theme.padding,
   bg: theme.dark.toHSV(),
   innerMaxWidth: theme.maxWidth,
 }), BaseColumn)
@@ -19,13 +18,15 @@ const ScrollableColumn = adaptTheme(theme => ({
 const TalkItem = adaptTheme(theme => ({
   bgColor: theme.light.lightenByRatio(0.3).toHSV(),
   mainColor: theme.dark.darkenByRatio(0.3).toHSV(),
-  altColor: theme.dark.desaturateByRatio(0.8).lightenByRatio(0.2).toHSV(),
+  altColor: theme.dark.desaturateByRatio(0.8).toHSV(),
+  padding: theme.spacing,
 }), BaseCard)
 
 const AdminItem = adaptTheme(theme => ({
   bgColor: theme.light.lightenByRatio(0.3).toHSV(),
   mainColor: theme.dark.darkenByRatio(0.3).toHSV(),
-  altColor: theme.dark.desaturateByRatio(0.8).lightenByRatio(0.2).toHSV(),
+  altColor: theme.dark.desaturateByRatio(0.8).toHSV(),
+  padding: theme.spacing,
 }), BaseCard)
 
 const BreakItem = adaptTheme(theme => ({
@@ -33,12 +34,15 @@ const BreakItem = adaptTheme(theme => ({
   mainColor: theme.light.lightenByRatio(0.3).toHSV(),
   altColor: theme.light.desaturateByRatio(0.8).toHSV(),
   bgHatchColor: theme.dark.darkenByRatio(0.2).toHSV(),
+  padding: theme.spacing,
 }), BaseCard)
 
 const Header = adaptTheme(theme => ({
   bg: theme.light.lightenByRatio(0.3).toHSV(),
   color: theme.dark.darkenByRatio(0.3).toHSV(),
   innerMaxWidth: theme.maxWidth,
+  paddingVertical: theme.spacing,
+  paddingHorizontal: theme.spacing*1.6,
 }), BaseHeader)
 
 const FixedHeightBody = adaptTheme(theme => ({
