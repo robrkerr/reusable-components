@@ -5,18 +5,24 @@ import schedule from './schedule'
 import theme from './theme'
 
 const renderItem = (item, i) => {
+  const props = {
+    key: i,
+    title: item.title,
+    details: item.presenter,
+    note: item.start,
+  }
   switch (item.type) {
     case 'admin': {
-      return (<AdminItem key={i} title={item.title} details={item.presenter} />)
+      return <AdminItem {...props} />
     }
     case 'talk': {
-      return (<TalkItem key={i} title={item.title} details={item.presenter} />)
+      return <TalkItem {...props} />
     }
     case 'break': {
-      return (<BreakItem key={i} title={item.title} details={item.presenter} />)
+      return <BreakItem {...props} />
     }
     default: {
-      return <div></div>
+      return null
     }
   }
 }
@@ -28,7 +34,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <FixedHeightBody>
           <Header>
-            Decompress 2016
+            {'Decompress 2016'}
           </Header>
           <Main>
             <ScrollableColumn>

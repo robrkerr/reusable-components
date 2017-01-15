@@ -23,12 +23,14 @@ const TalkItem = adaptTheme(theme => ({
 const AdminItem = adaptTheme(theme => ({
   bg: theme.light.lightenByRatio(0.3).toHSV(),
   main: theme.dark.darkenByRatio(0.3).toHSV(),
+  alt: theme.dark.desaturateByRatio(0.8).lightenByRatio(0.2).toHSV(),
 }), BaseCard)
 
 const BreakItem = adaptTheme(theme => ({
   bg: theme.dark.darkenByRatio(0.3).toHSV(),
   main: theme.light.lightenByRatio(0.3).toHSV(),
-  hatchColor: theme.dark.darkenByRatio(0.2).toHSV(),
+  alt: theme.light.desaturateByRatio(0.8).toHSV(),
+  bgHatchColor: theme.dark.darkenByRatio(0.2).toHSV(),
 }), BaseCard)
 
 const Header = adaptTheme(theme => ({

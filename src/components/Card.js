@@ -9,13 +9,13 @@ const Container = styled.div`
   padding: 1rem;
   ${props => {
     const { theme } = props
-    return (theme.hatched || theme.hatchAngle || theme.hatchWidth || theme.hatchColor) ? (
+    return (theme.bgHatched || theme.bgHatchAngle || theme.bgHatchWidth || theme.bgHatchColor) ? (
       `background: repeating-linear-gradient(
-        ${theme.hatchAngle || '45'}deg,
-        ${theme.hatchColor || 'grey'},
-        ${theme.hatchColor || 'grey'} ${theme.hatchWidth || 10}px,
-        ${theme.bg || 'white'} ${theme.hatchWidth || 10}px,
-        ${theme.bg || 'white'} ${theme.hatchWidth*2 || 20}px
+        ${theme.bgHatchAngle || '45'}deg,
+        ${theme.bgHatchColor || 'grey'},
+        ${theme.bgHatchColor || 'grey'} ${theme.bgHatchWidth || 10}px,
+        ${theme.bg || 'white'} ${theme.bgHatchWidth || 10}px,
+        ${theme.bg || 'white'} ${theme.bgHatchWidth*2 || 20}px
       );`
     ) : (
       `background-color: ${theme.bg || 'white'};`
@@ -40,12 +40,14 @@ const Details = styled.div`
 
 class Card extends Component {
   render() {
+    const { title, details, note } = this.props
     return (
       <Container>
-        <Title>{this.props.title}</Title>
+        <Details>{note}</Details>
+        <Title>{title}</Title>
         {
-          this.props.details ? (
-            <Details>{this.props.details}</Details>
+          details ? (
+            <Details>{details}</Details>
           ) : null
         }
       </Container>
