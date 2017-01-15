@@ -7,7 +7,24 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   padding: 1rem;
-  background-color: ${props => props.theme.bg || 'white'};
+  ${props => {
+    const { theme } = props
+    return (theme.hatched || theme.hatchAngle || theme.hatchWidth || theme.hatchColor) ? (
+      `background: repeating-linear-gradient(
+        ${theme.hatchAngle || '45'}deg,
+        ${theme.hatchColor || 'grey'},
+        ${theme.hatchColor || 'grey'} ${theme.hatchWidth || 10}px,
+        ${theme.bg || 'white'} ${theme.hatchWidth || 10}px,
+        ${theme.bg || 'white'} ${theme.hatchWidth*2 || 20}px
+      );`
+    ) : (
+      `background-color: ${theme.bg || 'white'};`
+    )
+  }}
+
+  & > *+* {
+    margin-top: 0.5rem;
+  }
 `
 
 const Title = styled.div`
@@ -18,6 +35,7 @@ const Title = styled.div`
 
 const Details = styled.div`
   width: 100%;
+  color: ${props => props.theme.alt || 'grey'};
 `
 
 class Card extends Component {
@@ -25,7 +43,11 @@ class Card extends Component {
     return (
       <Container>
         <Title>{this.props.title}</Title>
-        <Details>{this.props.details}</Details>
+        {
+          this.props.details ? (
+            <Details>{this.props.details}</Details>
+          ) : null
+        }
       </Container>
     )
   }

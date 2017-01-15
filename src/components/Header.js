@@ -15,7 +15,7 @@ const Inner = styled.div`
   width: 100%;
   max-width: ${props => props.theme.maxWidth || 500}px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem 1.6rem;
   font-size: 1.3em;
   color: ${props => props.theme.color};
 `;

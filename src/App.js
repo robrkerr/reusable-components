@@ -28,7 +28,7 @@ class App extends Component {
       <ThemeProvider theme={theme}>
         <FixedHeightBody>
           <Header>
-            Decompress
+            Decompress 2016
           </Header>
           <Main>
             <ScrollableColumn>
