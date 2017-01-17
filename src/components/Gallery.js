@@ -1,33 +1,46 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const Container = styled.div`
-  display: flex;
-  width: 100%;
-  flex: 1;
-  background-color: ${({ theme }) => theme.bg || 'white'};
-  overflow-y: auto;
-`
+const themeDefaults = {
+  childSpacing: 1,
+  bg: 'white',
+  innerMaxWidth: undefined,
+  shadowColor: 'hsl(0, 0%, 10%)',
+}
 
-const Inner = styled.div`
-  position: relative;
-  width: 100%;
-  ${({ theme }) => theme.innerMaxWidth && `max-width: ${theme.innerMaxWidth}px;`}
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: ${({ theme }) => (theme.childSpacing || 1) * 0.5}rem;
-  align-content: flex-start;
-  justify-content: center;
+const Container = styled.div`${(props) => {
+  const theme = { ...themeDefaults, ...props.theme }
+  return `
+    display: flex;
+    width: 100%;
+    flex: 1;
+    background-color: ${theme.bg};
+    overflow-y: auto;
+  `
+}}`
 
-  & > * {
-    box-shadow: 2px 2px 2px 0px ${({ theme }) => theme.shadowColor || 'hsl(0, 0%, 10%)'};
-    width: 210px;
-    height: 180px;
-    margin: ${({ theme }) => (theme.childSpacing || 1) * 0.5}rem;
-  }
-`
+const Inner = styled.div`${(props) => {
+  const theme = { ...themeDefaults, ...props.theme }
+  return `
+    position: relative;
+    width: 100%;
+    ${theme.innerMaxWidth && `max-width: ${theme.innerMaxWidth}px;`}
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: ${theme.childSpacing * 0.5}rem;
+    align-content: flex-start;
+    justify-content: center;
+
+    & > * {
+      box-shadow: 2px 2px 2px 0px ${theme.shadowColor};
+      width: 210px;
+      height: 180px;
+      margin: ${theme.childSpacing * 0.5}rem;
+    }
+  `
+}}`
 
 class Gallery extends Component {
   render() {

@@ -1,24 +1,40 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const Container = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  background-color: ${({ theme }) => theme.bg || 'white'};
-  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-  z-index: 1;
-`
+const themeDefaults = {
+  childSpacing: 1,
+  paddingVertical: 1,
+  paddingHorizontal: 1.6,
+  bg: 'white',
+  innerMaxWidth: undefined,
+  shadowColor: 'hsl(0, 0%, 10%)',
+  color: 'black',
+}
 
-const Inner = styled.div`
-  display: flex;
-  width: 100%;
-  ${({ theme }) => theme.innerMaxWidth && `max-width: ${theme.innerMaxWidth}px;`}
-  margin: 0 auto;
-  padding: ${({ theme }) => theme.paddingVertical || 1}rem ${({ theme }) => 1.6 * (theme.paddingHorizontal || 1)}rem;
-  font-size: 1.3em;
-  color: ${({ theme }) => theme.color};
-`
+const Container = styled.div`${(props) => {
+  const theme = { ...themeDefaults, ...props.theme }
+  return `
+    position: relative;
+    display: flex;
+    width: 100%;
+    background-color: ${theme.bg};
+    box-shadow: 0px 2px 5px 0px ${theme.shadowColor};
+    z-index: 1;
+  `
+}}`
+
+const Inner = styled.div`${(props) => {
+  const theme = { ...themeDefaults, ...props.theme }
+  return `
+    display: flex;
+    width: 100%;
+    ${theme.innerMaxWidth && `max-width: ${theme.innerMaxWidth}px;`}
+    margin: 0 auto;
+    padding: ${theme.paddingVertical}rem ${theme.paddingHorizontal}rem;
+    font-size: 1.3em;
+    color: ${theme.color};
+  `
+}}`
 
 class Header extends Component {
   render() {
