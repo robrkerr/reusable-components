@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styled from 'styled-components-themes'
+import styled from 'styled-components'
 
 const Container = styled.div`
   position: relative;
@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 100%;
   flex: 1;
   background-color: ${props => props.theme.bg || 'white'};
-`;
+`
 
 class Main extends Component {
   render() {

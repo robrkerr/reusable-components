@@ -1,51 +1,60 @@
-import { adaptTheme } from 'styled-components-themes'
+import Color from 'color-js'
+import { applyTheme } from '../helpers'
 import BaseFixedHeightBody from '../components/FixedHeightBody'
 import BaseHeader from '../components/Header'
 import BaseMain from '../components/Main'
 import BaseColumn from '../components/Column'
 import BaseCard from '../components/Card'
 
-const Main = adaptTheme(theme => ({
-  bg: theme.dark.toHSV(),
-}), BaseMain)
+const theme = {
+  // https://randoma11y.com/#/?_k=v2euhx
+  light: Color('hsl(44, 46%, 69%)'),
+  dark: Color('hsl(307, 78%, 23%)'),
+  maxWidth: 500,
+  spacing: 0.8,
+}
 
-const ScrollableColumn = adaptTheme(theme => ({
+const Main = applyTheme(BaseMain, {
+  bg: theme.dark.toString(),
+})
+
+const ScrollableColumn = applyTheme(BaseColumn, {
   childSpacing: theme.spacing,
-  bg: theme.dark.toHSV(),
+  bg: theme.dark.toString(),
   innerMaxWidth: theme.maxWidth,
-}), BaseColumn)
+})
 
-const TalkItem = adaptTheme(theme => ({
-  bgColor: theme.light.lightenByRatio(0.3).toHSV(),
-  mainColor: theme.dark.darkenByRatio(0.3).toHSV(),
-  altColor: theme.dark.desaturateByRatio(0.8).toHSV(),
+const TalkItem = applyTheme(BaseCard, {
+  bgColor: theme.light.lightenByRatio(0.3).toString(),
+  mainColor: theme.dark.darkenByRatio(0.3).toString(),
+  altColor: theme.dark.desaturateByRatio(0.8).toString(),
   padding: theme.spacing,
-}), BaseCard)
+})
 
-const AdminItem = adaptTheme(theme => ({
-  bgColor: theme.light.lightenByRatio(0.3).toHSV(),
-  mainColor: theme.dark.darkenByRatio(0.3).toHSV(),
-  altColor: theme.dark.desaturateByRatio(0.8).toHSV(),
+const AdminItem = applyTheme(BaseCard, {
+  bgColor: theme.light.lightenByRatio(0.3).toString(),
+  mainColor: theme.dark.darkenByRatio(0.3).toString(),
+  altColor: theme.dark.desaturateByRatio(0.8).toString(),
   padding: theme.spacing,
-}), BaseCard)
+})
 
-const BreakItem = adaptTheme(theme => ({
-  bgColor: theme.dark.darkenByRatio(0.3).toHSV(),
-  mainColor: theme.light.lightenByRatio(0.3).toHSV(),
-  altColor: theme.light.desaturateByRatio(0.8).toHSV(),
-  bgHatchColor: theme.dark.darkenByRatio(0.2).toHSV(),
+const BreakItem = applyTheme(BaseCard, {
+  bgColor: theme.dark.darkenByRatio(0.3).toString(),
+  mainColor: theme.light.lightenByRatio(0.3).toString(),
+  altColor: theme.light.desaturateByRatio(0.8).toString(),
+  bgHatchColor: theme.dark.darkenByRatio(0.2).toString(),
   padding: theme.spacing,
-}), BaseCard)
+})
 
-const Header = adaptTheme(theme => ({
-  bg: theme.light.lightenByRatio(0.3).toHSV(),
-  color: theme.dark.darkenByRatio(0.3).toHSV(),
+const Header = applyTheme(BaseHeader, {
+  bg: theme.light.lightenByRatio(0.3).toString(),
+  color: theme.dark.darkenByRatio(0.3).toString(),
   innerMaxWidth: theme.maxWidth,
   paddingVertical: theme.spacing,
   paddingHorizontal: theme.spacing*1.6,
-}), BaseHeader)
+})
 
-const FixedHeightBody = adaptTheme(theme => ({
-}), BaseFixedHeightBody)
+const FixedHeightBody = applyTheme(BaseFixedHeightBody, {
+})
 
 export { FixedHeightBody, Main, ScrollableColumn, AdminItem, TalkItem, BreakItem, Header }

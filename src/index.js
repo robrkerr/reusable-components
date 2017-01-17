@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import styled from 'styled-components-themes'
+import styled from 'styled-components'
 import Schedule from './schedule/App'
-import Gallery from './gallery/App'
+import Notes from './notes/App'
 import './index.css'
 
 const Container = styled.div`
@@ -26,7 +26,7 @@ class Index extends Component {
     return (
       <Container>
         <Link href={'/schedule'}>Decompress Schedule</Link>
-        <Link href={'/gallery'}>Random Gallery</Link>
+        <Link href={'/notes'}>Notes</Link>
       </Container>
     )
   }
@@ -37,8 +37,8 @@ const getApp = () => {
     case '/schedule': {
       return <Schedule />
     }
-    case '/gallery': {
-      return <Gallery />
+    case '/notes': {
+      return <Notes />
     }
     default: {
       return <Index />

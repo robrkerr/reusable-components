@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { ThemeProvider } from 'styled-components-themes'
 import { FixedHeightBody, Main, ScrollableColumn, AdminItem, TalkItem, BreakItem, Header } from './components'
 import schedule from './schedule'
-import theme from './theme'
 
 const renderItem = (item, i) => {
   const props = {
@@ -31,18 +29,16 @@ class App extends Component {
 
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <FixedHeightBody>
-          <Header>
-            {'Decompress 2016'}
-          </Header>
-          <Main>
-            <ScrollableColumn>
-              { schedule.map(renderItem) }
-            </ScrollableColumn>
-          </Main>
-        </FixedHeightBody>
-      </ThemeProvider>
+      <FixedHeightBody>
+        <Header>
+          {'Decompress 2016'}
+        </Header>
+        <Main>
+          <ScrollableColumn>
+            { schedule.map(renderItem) }
+          </ScrollableColumn>
+        </Main>
+      </FixedHeightBody>
     )
   }
 }
