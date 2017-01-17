@@ -5,33 +5,31 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   flex: 1;
-  background-color: ${props => props.theme.bg || 'white'};
-  ${props => (props.theme.scrollable === false) ? (
-  "overflow-y: hidden;"
+  background-color: ${({ theme }) => theme.bg || 'white'};
+  ${({ theme }) => (theme.scrollable === false) ? (
+    "overflow-y: hidden;"
   ) : (
-  "overflow-y: auto;"
+    "overflow-y: auto;"
   )}
 `
 
 const Inner = styled.div`
   position: relative;
   width: 100%;
-  ${props => props.theme.innerMaxWidth ? (
-  `max-width: ${props.theme.innerMaxWidth}px;`
-  ) : ''}
+  ${({ theme }) => theme.innerMaxWidth && `max-width: ${theme.innerMaxWidth}px;`}
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: ${props => props.theme.childSpacing || 1}rem;
+  padding: ${({ theme }) => theme.childSpacing || 1}rem;
 
   & > *+* {
-    margin-top: ${props => props.theme.childSpacing || 1}rem;
+    margin-top: ${({ theme }) => theme.childSpacing || 1}rem;
   }
   & > *:last-child {
-    margin-bottom: ${props => props.theme.childSpacing || 1}rem;
+    margin-bottom: ${({ theme }) => theme.childSpacing || 1}rem;
   }
   & > * {
-    box-shadow: 2px 2px 2px 0px ${props => props.theme.shadowColor || 'hsl(0, 0%, 10%)'};
+    box-shadow: 2px 2px 2px 0px ${({ theme }) => theme.shadowColor || 'hsl(0, 0%, 10%)'};
   }
 `
 

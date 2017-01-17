@@ -6,21 +6,9 @@ const Container = styled.div`
   flex-shrink: 0;
   flex-direction: column;
   width: 100%;
-  padding: ${props => props.theme.padding || 1}rem;
-  ${props => {
-    const { theme } = props
-    return (theme.bgHatched || theme.bgHatchAngle || theme.bgHatchWidth || theme.bgHatchColor) ? (
-      `background: repeating-linear-gradient(
-        ${theme.bgHatchAngle || '45'}deg,
-        ${theme.bgHatchColor || 'grey'},
-        ${theme.bgHatchColor || 'grey'} ${theme.bgHatchWidth || 10}px,
-        ${theme.bgColor || 'white'} ${theme.bgHatchWidth || 10}px,
-        ${theme.bgColor || 'white'} ${theme.bgHatchWidth*2 || 20}px
-      );`
-    ) : (
-      `background-color: ${theme.bgColor || 'white'};`
-    )
-  }}
+  padding: ${({ theme }) => theme.padding || 1}rem;
+  ${({ theme }) => theme.background && `background: ${theme.background};`}
+  ${({ theme }) => !theme.background && `background-color: ${theme.bgColor || 'white'};`}
 
   & > *+* {
     margin-top: 0.5rem;
@@ -30,12 +18,12 @@ const Container = styled.div`
 const Title = styled.div`
   width: 100%;
   font-size: 1.2em;
-  color: ${props => props.theme.mainColor || 'palevioletred'};
+  color: ${({ theme }) => theme.mainColor || 'palevioletred'};
 `
 
 const Details = styled.div`
   width: 100%;
-  color: ${props => props.theme.altColor || 'grey'};
+  color: ${({ theme }) => theme.altColor || 'grey'};
 `
 
 class Card extends Component {

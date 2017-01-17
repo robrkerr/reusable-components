@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   flex: 1;
-  background-color: ${props => props.theme.bg || 'white'};
+  background-color: ${({ theme }) => theme.bg || 'white'};
 `
 
 class Main extends Component {

@@ -1,5 +1,5 @@
 import Color from 'color-js'
-import { applyTheme } from '../helpers'
+import { applyTheme, createHatchedBackground } from '../helpers'
 import BaseFixedHeightBody from '../components/FixedHeightBody'
 import BaseHeader from '../components/Header'
 import BaseMain from '../components/Main'
@@ -39,10 +39,12 @@ const AdminItem = applyTheme(BaseCard, {
 })
 
 const BreakItem = applyTheme(BaseCard, {
-  bgColor: theme.dark.darkenByRatio(0.3).toString(),
   mainColor: theme.light.lightenByRatio(0.3).toString(),
   altColor: theme.light.desaturateByRatio(0.8).toString(),
-  bgHatchColor: theme.dark.darkenByRatio(0.2).toString(),
+  background: createHatchedBackground({
+    bgColor: theme.dark.darkenByRatio(0.3).toString(),
+    hatchColor: theme.dark.darkenByRatio(0.2).toString(),
+  }),
   padding: theme.spacing,
 })
 
