@@ -23,11 +23,16 @@ const Container = styled.div`${({ theme }) => `
 const Inner = styled.div`${({ theme }) => `
   display: flex;
   width: 100%;
+  justify-content: space-between;
+  align-items: flex-end;
   ${theme.innerMaxWidth && `max-width: ${theme.innerMaxWidth}px;`}
   margin: 0 auto;
   padding: ${theme.paddingVertical}rem ${theme.paddingHorizontal}rem;
-  font-size: 1.3em;
   color: ${theme.color};
+
+  & *[data-title] {
+    font-size: 1.3em;
+  }
 `}`
 
 class Header extends Component {

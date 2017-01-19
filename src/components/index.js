@@ -4,6 +4,6 @@ import Main from '../components/Main'
 import Column from '../components/Column'
 import Gallery from '../components/Gallery'
 import Card from '../components/Card'
-import * as helpers from '../components/helpers'
+import * as helpers from '../components/helpers/external'
 
 export { FixedHeightBody, Header, Main, Column, Gallery, Card, helpers }

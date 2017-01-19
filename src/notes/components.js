@@ -13,7 +13,7 @@ const Gallery = adaptTheme(theme => ({
 }), componentLibrary.Gallery)
 
 const Item = adaptTheme(theme => ({
-  bgColor: theme.light.lightenByRatio(0.3).toString(),
+  backgroundColor: theme.light.lightenByRatio(0.3).toString(),
   mainColor: theme.dark.lightenByRatio(0.8).toString(),
   altColor: theme.dark.desaturateByRatio(0.5).lightenByRatio(1).toString(),
   padding: theme.spacing,
@@ -22,7 +22,7 @@ const Item = adaptTheme(theme => ({
 const Header = adaptTheme(theme => ({
   bg: theme.light.lightenByRatio(0.3).toString(),
   mainColor: theme.dark.lightenByRatio(0.8).toString(),
-  innerMaxWidth: theme.maxWidth,
+  // innerMaxWidth: theme.maxWidth,
   paddingVertical: theme.spacing,
   paddingHorizontal: theme.spacing*1.2,
 }), componentLibrary.Header)

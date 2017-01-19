@@ -18,23 +18,28 @@ const ScrollableColumn = applyTheme({
   childSpacing: theme.spacing,
   bg: theme.dark.toString(),
   innerMaxWidth: theme.maxWidth,
+  marginNonHighlighted: 1,
 }, componentLibrary.Column)
 
-const TalkItem = applyTheme({
-  bgColor: theme.light.lightenByRatio(0.3).toString(),
+const TalkCard = applyTheme({
+  backgroundColor: theme.light.lightenByRatio(0.3).toString(),
   mainColor: theme.dark.darkenByRatio(0.3).toString(),
   altColor: theme.dark.desaturateByRatio(0.8).toString(),
+  backgroundColor_highlighted: theme.light.lightenByRatio(0.1).toString(),
+  altColor_highlighted: theme.dark.desaturateByRatio(0.3).toString(),
   padding: theme.spacing,
 }, componentLibrary.Card)
 
-const AdminItem = applyTheme({
-  bgColor: theme.light.lightenByRatio(0.3).toString(),
+const AdminCard = applyTheme({
+  backgroundColor: theme.light.lightenByRatio(0.3).toString(),
   mainColor: theme.dark.darkenByRatio(0.3).toString(),
   altColor: theme.dark.desaturateByRatio(0.8).toString(),
+  backgroundColor_highlighted: theme.light.lightenByRatio(0.1).toString(),
+  altColor_highlighted: theme.dark.desaturateByRatio(0.3).toString(),
   padding: theme.spacing,
 }, componentLibrary.Card)
 
-const BreakItem = applyTheme({
+const BreakCard = applyTheme({
   mainColor: theme.light.lightenByRatio(0.3).toString(),
   altColor: theme.light.desaturateByRatio(0.8).toString(),
   background: componentLibrary.helpers.createHatchedBackground({
@@ -45,7 +50,7 @@ const BreakItem = applyTheme({
 }, componentLibrary.Card)
 
 const Header = applyTheme({
-  bg: theme.light.lightenByRatio(0.3).toString(),
+  bg: theme.light.lightenByRatio(0.1).toString(),
   color: theme.dark.darkenByRatio(0.3).toString(),
   innerMaxWidth: theme.maxWidth,
   paddingVertical: theme.spacing,
@@ -54,4 +59,4 @@ const Header = applyTheme({
 
 const FixedHeightBody = applyTheme({}, componentLibrary.FixedHeightBody)
 
-export { FixedHeightBody, Main, ScrollableColumn, AdminItem, TalkItem, BreakItem, Header }
+export { FixedHeightBody, Main, ScrollableColumn, AdminCard, TalkCard, BreakCard, Header }

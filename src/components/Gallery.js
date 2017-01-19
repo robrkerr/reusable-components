@@ -11,7 +11,6 @@ const baseTheme = {
 const Container = styled.div`${({ theme }) => `
   display: flex;
   width: 100%;
-  flex: 1;
   background-color: ${theme.bg};
   overflow-y: auto;
 `}`

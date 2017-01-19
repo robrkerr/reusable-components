@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const baseTheme = {
   childSpacing: 1,
+  marginNonHighlighted: 1,
   bg: 'white',
   scrollable: true,
   innerMaxWidth: undefined,
@@ -12,7 +13,6 @@ const baseTheme = {
 const Container = styled.div`${({ theme }) => `
   display: flex;
   width: 100%;
-  flex: 1;
   background-color: ${theme.bg};
   ${theme.scrollable ? "overflow-y: auto;" : "overflow-y: hidden;"}
 `}`
@@ -34,6 +34,10 @@ const Inner = styled.div`${({ theme }) => `
   }
   & > * {
     box-shadow: 2px 2px 2px 0px ${theme.shadowColor};
+    transform: scale(0.97);
+  }
+  & > *[data-status="highlighted"] {
+    transform: scale(1.00);
   }
 `}`
 
