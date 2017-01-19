@@ -1,36 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import styled from 'styled-components'
 import Schedule from './schedule/App'
 import Notes from './notes/App'
+import Selector from './Selector'
 import './index.css'
-
-const Container = styled.div`
-  width: 100%;
-  padding: 2rem 1rem;
-  max-width: 400px;
-  margin: 0 auto;
-
-  & > *+* {
-    margin-top: 0.5rem;
-  }
-`
-
-const Link = styled.a`
-  display: block;
-  cursor: pointer;
-`
-
-class Index extends Component {
-  render() {
-    return (
-      <Container>
-        <Link href={'/schedule'}>Decompress Schedule</Link>
-        <Link href={'/notes'}>Notes</Link>
-      </Container>
-    )
-  }
-}
 
 const getApp = () => {
   switch (window.location.pathname) {
@@ -41,7 +14,7 @@ const getApp = () => {
       return <Notes />
     }
     default: {
-      return <Index />
+      return <Selector />
     }
   }
 }
