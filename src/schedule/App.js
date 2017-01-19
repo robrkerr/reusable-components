@@ -29,7 +29,7 @@ const renderItem = (time, item, i) => {
       return <AdminCard data-status={status} {...props} />
     }
     case 'talk': {
-      return <TalkCard data-status={status} {...props} />
+      return <TalkCard data-status={status} {...props}>{item.description}</TalkCard>
     }
     case 'break': {
       return <BreakCard data-status={status} {...props} />

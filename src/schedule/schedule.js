@@ -20,7 +20,8 @@ export default [
     title: "\"Accessibility in Single Page Applications\"",
     presenter: "Rick Giner",
     start: "11:00",
-    finish: "11:20"
+    finish: "11:20",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id convallis nibh. In hac habitasse platea dictumst. Vivamus nulla neque, tempor ut cursus vel, tristique at lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus vitae est finibus, dictum metus et, laoreet orci. Proin pharetra, mauris id mattis varius, risus lectus luctus justo, et varius ex elit vitae neque. Vestibulum eget magna eget sem interdum tempor vel in eros. Nunc vitae laoreet nunc. Fusce non ultrices lorem. Pellentesque eget risus id felis semper fringilla sit amet sed nisl. Fusce lobortis eget metus in eleifend. Sed gravida enim et sapien laoreet, vel pretium sem molestie."
   }, {
     type: "talk",
     title: "\"Advanced Fluid Typography (and more)\"",

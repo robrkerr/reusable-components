@@ -34,10 +34,10 @@ const Inner = styled.div`${({ theme }) => `
   }
   & > * {
     box-shadow: 2px 2px 2px 0px ${theme.shadowColor};
-    transform: scale(0.97);
+    transform: perspective(1px) scale(0.97);
   }
   & > *[data-status="highlighted"] {
-    transform: scale(1.00);
+    transform: perspective(1px) scale(1.00);
   }
 `}`
 

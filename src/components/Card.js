@@ -51,12 +51,13 @@ const Details = styled.div`${({ theme, ...props }) => `
 
 class Card extends Component {
   render() {
-    const { title, details, note, status } = this.props
+    const { title, details, note, status, children } = this.props
     return (
       <Container {...this.props}>
         { note && <Details {...this.props}>{note}</Details> }
         { title && <Title {...this.props}>{title}</Title> }
         { details && <Details {...this.props}>{details}</Details> }
+        { children && <div>{children}</div> }
       </Container>
     )
   }
