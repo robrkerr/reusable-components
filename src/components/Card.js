@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const themeDefaults = {
+const baseTheme = {
   padding: 1,
   bgColor: 'white',
   background: undefined,
@@ -9,38 +9,28 @@ const themeDefaults = {
   altColor: 'blue',
 }
 
-const Container = styled.div`${(props) => {
-  const theme = { ...themeDefaults, ...props.theme }
-  return `
-    display: flex;
-    flex-shrink: 0;
-    flex-direction: column;
-    width: 100%;
-    padding: ${theme.padding}rem;
-    ${theme.background ? `background: ${theme.background};` : `background-color: ${theme.bgColor};`}
+const Container = styled.div`${({ theme }) => `
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding: ${theme.padding}rem;
+  ${theme.background ? `background: ${theme.background};` : `background-color: ${theme.bgColor};`}
 
-    & > *+* {
-      margin-top: 0.5rem;
-    }
-  `
-}}`
+  & > *+* {
+    margin-top: 0.5rem;
+  }
+`}`
 
-const Title = styled.div`${(props) => {
-  const theme = { ...themeDefaults, ...props.theme }
-  return `
-    width: 100%;
-    font-size: 1.2em;
-    color: ${theme.mainColor};
-  `
-}}`
+const Title = styled.div`${({ theme }) => `
+  width: 100%;
+  font-size: 1.2em;
+  color: ${theme.mainColor};
+`}`
 
-const Details = styled.div`${(props) => {
-  const theme = { ...themeDefaults, ...props.theme }
-  return `
-    width: 100%;
-    color: ${theme.altColor};
-  `
-}}`
+const Details = styled.div`${({ theme }) => `
+  width: 100%;
+  color: ${theme.altColor};
+`}`
 
 class Card extends Component {
   render() {
@@ -54,5 +44,7 @@ class Card extends Component {
     )
   }
 }
+
+Card.BaseTheme = baseTheme
 
 export default Card

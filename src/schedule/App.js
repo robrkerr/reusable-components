@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { FixedHeightBody, Main, ScrollableColumn, AdminItem, TalkItem, BreakItem, Header } from './components'
+import {
+  FixedHeightBody,
+  Main,
+  ScrollableColumn,
+  AdminItem,
+  TalkItem,
+  BreakItem,
+  Header
+} from './components'
 import schedule from './schedule'
 
 const renderItem = (item, i) => {

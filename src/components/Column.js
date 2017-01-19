@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const themeDefaults = {
+const baseTheme = {
   childSpacing: 1,
   bg: 'white',
   scrollable: true,
@@ -9,39 +9,33 @@ const themeDefaults = {
   shadowColor: 'hsl(0, 0%, 10%)',
 }
 
-const Container = styled.div`${(props) => {
-  const theme = { ...themeDefaults, ...props.theme }
-  return `
-    display: flex;
-    width: 100%;
-    flex: 1;
-    background-color: ${theme.bg};
-    ${theme.scrollable ? "overflow-y: auto;" : "overflow-y: hidden;"}
-  `
-}}`
+const Container = styled.div`${({ theme }) => `
+  display: flex;
+  width: 100%;
+  flex: 1;
+  background-color: ${theme.bg};
+  ${theme.scrollable ? "overflow-y: auto;" : "overflow-y: hidden;"}
+`}`
 
-const Inner = styled.div`${(props) => {
-  const theme = { ...themeDefaults, ...props.theme }
-  return `
-    position: relative;
-    width: 100%;
-    ${theme.innerMaxWidth && `max-width: ${theme.innerMaxWidth}px;`}
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    padding: ${theme.childSpacing}rem;
+const Inner = styled.div`${({ theme }) => `
+  position: relative;
+  width: 100%;
+  ${theme.innerMaxWidth && `max-width: ${theme.innerMaxWidth}px;`}
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: ${theme.childSpacing}rem;
 
-    & > *+* {
-      margin-top: ${theme.childSpacing}rem;
-    }
-    & > *:last-child {
-      margin-bottom: ${theme.childSpacing}rem;
-    }
-    & > * {
-      box-shadow: 2px 2px 2px 0px ${theme.shadowColor};
-    }
-  `
-}}`
+  & > *+* {
+    margin-top: ${theme.childSpacing}rem;
+  }
+  & > *:last-child {
+    margin-bottom: ${theme.childSpacing}rem;
+  }
+  & > * {
+    box-shadow: 2px 2px 2px 0px ${theme.shadowColor};
+  }
+`}`
 
 class Column extends Component {
   render() {
@@ -52,5 +46,7 @@ class Column extends Component {
     )
   }
 }
+
+Column.BaseTheme = baseTheme
 
 export default Column

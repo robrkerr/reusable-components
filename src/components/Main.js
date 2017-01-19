@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const themeDefaults = {
+const baseTheme = {
   bg: 'white',
 }
 
-const Container = styled.div`${(props) => {
-  const theme = { ...themeDefaults, ...props.theme }
-  return `
-    position: relative;
-    display: flex;
-    width: 100%;
-    flex: 1;
-    background-color: ${theme.bg};
-  `
-}}`
+const Container = styled.div`${({ theme }) => `
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex: 1;
+  background-color: ${theme.bg};
+`}`
 
 class Main extends Component {
   render() {
@@ -23,5 +20,7 @@ class Main extends Component {
     )
   }
 }
+
+Main.BaseTheme = baseTheme
 
 export default Main
