@@ -40,8 +40,7 @@ const Container = styled.div`${({ theme, ...props }) => `
     margin-top: 0.5rem;
   }
   & > * {
-    transition-property: color;
-    transition-duration: 1s;
+    transition-property: color 1s;
   }
 `}`
 
@@ -59,9 +58,9 @@ const Note = styled.div`${({ theme, ...props }) => `
 const Details = styled.div`${({ theme, ...props }) => `
   width: 100%;
   color: ${getThemeValue(theme, 'mainColor', props.status)};
-  & > *+* {
-    margin-top: 0.5rem;
-  }
+  padding-top: 1rem;
+  transition: opacity 0.3s;
+  opacity: ${props.open ? '1' : '0'};
 `}`
 
 class Card extends Component {
@@ -80,7 +79,8 @@ class Card extends Component {
     const { title, details, note, children } = this.props
     const { open } = this.state
     const collapseProps = {
-      isOpened: true,
+      isOpened: open,
+      keepCollapsedContent: true,
       springConfig: { stiffness: 500, damping: (open ? 22 : 40) },
       ...this.props,
     }
@@ -91,7 +91,7 @@ class Card extends Component {
         { details && <Note {...this.props}>{ details }</Note> }
         { children &&
           <Collapse {...collapseProps} style={{ margin: 0 }}>
-            { open && <div style={{ paddingTop: '0.5rem' }}>{ children }</div> }
+            <Details {...this.props} open={open}>{ children }</Details>
           </Collapse>
         }
       </Container>
