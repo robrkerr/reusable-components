@@ -1,8 +1,7 @@
 import Color from 'color-js'
-import { applyTheme } from '../theme-helpers'
 import * as componentLibrary from '../components'
 
-const theme = {
+const general = {
   // https://randoma11y.com/#/?_k=v2euhx
   light: Color('hsl(44, 46%, 69%)'),
   dark: Color('hsl(307, 78%, 23%)'),
@@ -10,53 +9,53 @@ const theme = {
   spacing: 0.8,
 }
 
-const Main = applyTheme({
-  bg: theme.dark.toString(),
-}, componentLibrary.Main)
+const Main = componentLibrary.createMain({
+  bg: general.dark.toString(),
+})
 
-const ScrollableColumn = applyTheme({
-  childSpacing: theme.spacing,
-  bg: theme.dark.toString(),
-  innerMaxWidth: theme.maxWidth,
+const ScrollableColumn = componentLibrary.createColumn({
+  childSpacing: general.spacing,
+  bg: general.dark.toString(),
+  innerMaxWidth: general.maxWidth,
   marginNonHighlighted: 1,
-}, componentLibrary.Column)
+})
 
-const TalkCard = applyTheme({
-  backgroundColor: theme.light.lightenByRatio(0.3).toString(),
-  mainColor: theme.dark.darkenByRatio(0.3).toString(),
-  altColor: theme.dark.desaturateByRatio(0.8).toString(),
-  backgroundColor_highlighted: theme.light.lightenByRatio(0.1).toString(),
-  altColor_highlighted: theme.dark.desaturateByRatio(0.3).toString(),
-  padding: theme.spacing,
-}, componentLibrary.Card)
+const TalkCard = componentLibrary.createCard({
+  backgroundColor: general.light.lightenByRatio(0.3).toString(),
+  mainColor: general.dark.darkenByRatio(0.3).toString(),
+  altColor: general.dark.desaturateByRatio(0.8).toString(),
+  backgroundColor_highlighted: general.light.lightenByRatio(0.1).toString(),
+  altColor_highlighted: general.dark.desaturateByRatio(0.3).toString(),
+  padding: general.spacing,
+})
 
-const AdminCard = applyTheme({
-  backgroundColor: theme.light.lightenByRatio(0.3).toString(),
-  mainColor: theme.dark.darkenByRatio(0.3).toString(),
-  altColor: theme.dark.desaturateByRatio(0.8).toString(),
-  backgroundColor_highlighted: theme.light.lightenByRatio(0.1).toString(),
-  altColor_highlighted: theme.dark.desaturateByRatio(0.3).toString(),
-  padding: theme.spacing,
-}, componentLibrary.Card)
+const AdminCard = componentLibrary.createCard({
+  backgroundColor: general.light.lightenByRatio(0.3).toString(),
+  mainColor: general.dark.darkenByRatio(0.3).toString(),
+  altColor: general.dark.desaturateByRatio(0.8).toString(),
+  backgroundColor_highlighted: general.light.lightenByRatio(0.1).toString(),
+  altColor_highlighted: general.dark.desaturateByRatio(0.3).toString(),
+  padding: general.spacing,
+})
 
-const BreakCard = applyTheme({
-  mainColor: theme.light.lightenByRatio(0.3).toString(),
-  altColor: theme.light.desaturateByRatio(0.8).toString(),
+const BreakCard = componentLibrary.createCard({
+  mainColor: general.light.lightenByRatio(0.3).toString(),
+  altColor: general.light.desaturateByRatio(0.8).toString(),
   background: componentLibrary.helpers.createHatchedBackground({
-    bgColor: theme.dark.darkenByRatio(0.3).toString(),
-    hatchColor: theme.dark.darkenByRatio(0.2).toString(),
+    bgColor: general.dark.darkenByRatio(0.3).toString(),
+    hatchColor: general.dark.darkenByRatio(0.2).toString(),
   }),
-  padding: theme.spacing,
-}, componentLibrary.Card)
+  padding: general.spacing,
+})
 
-const Header = applyTheme({
-  bg: theme.light.lightenByRatio(0.1).toString(),
-  color: theme.dark.darkenByRatio(0.3).toString(),
-  innerMaxWidth: theme.maxWidth,
-  paddingVertical: theme.spacing,
-  paddingHorizontal: theme.spacing*1.6,
-}, componentLibrary.Header)
+const Header = componentLibrary.createHeader({
+  bg: general.light.lightenByRatio(0.1).toString(),
+  color: general.dark.darkenByRatio(0.3).toString(),
+  innerMaxWidth: general.maxWidth,
+  paddingVertical: general.spacing,
+  paddingHorizontal: general.spacing*1.6,
+})
 
-const FixedHeightBody = applyTheme({}, componentLibrary.FixedHeightBody)
+const FixedHeightBody = componentLibrary.createFixedHeightBody()
 
 export { FixedHeightBody, Main, ScrollableColumn, AdminCard, TalkCard, BreakCard, Header }

@@ -1,32 +1,40 @@
-import { adaptTheme } from '../theme-helpers'
+import Color from 'color-js'
 import * as componentLibrary from '../components'
 
-const Main = adaptTheme(theme => ({
-  bg: theme.light.toString(),
-}), componentLibrary.Main)
+const general = {
+  // https://randoma11y.com/#/?_k=v2euhx
+  light: Color('hsl(140, 11%, 53%)'),
+  dark: Color('hsl(222, 68%, 7%)'),
+  maxWidth: 1000,
+  spacing: 1.5,
+}
 
-const Gallery = adaptTheme(theme => ({
-  childSpacing: theme.spacing,
-  padding: theme.spacing,
-  bg: theme.light.toString(),
-  innerMaxWidth: theme.maxWidth,
-}), componentLibrary.Gallery)
+const Main = componentLibrary.createMain({
+  bg: general.light.toString(),
+})
 
-const Item = adaptTheme(theme => ({
-  backgroundColor: theme.light.lightenByRatio(0.3).toString(),
-  mainColor: theme.dark.lightenByRatio(0.8).toString(),
-  altColor: theme.dark.desaturateByRatio(0.5).lightenByRatio(1).toString(),
-  padding: theme.spacing,
-}), componentLibrary.Card)
+const Gallery = componentLibrary.createGallery({
+  childSpacing: general.spacing,
+  padding: general.spacing,
+  bg: general.light.toString(),
+  innerMaxWidth: general.maxWidth,
+})
 
-const Header = adaptTheme(theme => ({
-  bg: theme.light.lightenByRatio(0.3).toString(),
-  mainColor: theme.dark.lightenByRatio(0.8).toString(),
-  // innerMaxWidth: theme.maxWidth,
-  paddingVertical: theme.spacing,
-  paddingHorizontal: theme.spacing*1.2,
-}), componentLibrary.Header)
+const Item = componentLibrary.createCard({
+  backgroundColor: general.light.lightenByRatio(0.3).toString(),
+  mainColor: general.dark.lightenByRatio(0.8).toString(),
+  altColor: general.dark.desaturateByRatio(0.5).lightenByRatio(1).toString(),
+  padding: general.spacing,
+})
 
-const FixedHeightBody = adaptTheme(theme => ({}), componentLibrary.FixedHeightBody)
+const Header = componentLibrary.createHeader({
+  bg: general.light.lightenByRatio(0.3).toString(),
+  mainColor: general.dark.lightenByRatio(0.8).toString(),
+  innerMaxWidth: general.maxWidth,
+  paddingVertical: general.spacing,
+  paddingHorizontal: general.spacing*2,
+})
+
+const FixedHeightBody = componentLibrary.createFixedHeightBody({})
 
 export { FixedHeightBody, Main, Gallery, Item, Header }
