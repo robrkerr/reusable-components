@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Collapse from 'react-collapse'
-import { makeGetThemeFromStatus } from './helpers/internal'
+import { getThemeFromStatus } from './helpers/internal'
 
 export default (appliedTheme) => {
 
