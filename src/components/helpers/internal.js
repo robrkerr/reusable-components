@@ -13,6 +13,6 @@ const statusToSuffix = (status) => {
   }
 }
 
-export const makeGetThemeFromStatus = (theme) => (attr, status) => (
+export const getThemeFromStatus = (theme, attr, status) => (
   theme[attr + statusToSuffix(status)] || theme[attr]
 )

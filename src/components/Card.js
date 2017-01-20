@@ -26,18 +26,16 @@ export default (appliedTheme) => {
 
   const theme = { ...baseTheme, ...appliedTheme }
 
-  const getThemeFromStatus = makeGetThemeFromStatus(theme)
-
   const Container = styled.div`
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
     padding: ${theme.padding}rem;
-    ${(props) => (getThemeFromStatus('background', props.status)
-        ? `background: ${getThemeFromStatus('background', props.status)};`
-        : `background-color: ${getThemeFromStatus('backgroundColor', props.status)};`
+    ${(props) => (getThemeFromStatus(theme, 'background', props.status)
+        ? `background: ${getThemeFromStatus(theme, 'background', props.status)};`
+        : `background-color: ${getThemeFromStatus(theme, 'backgroundColor', props.status)};`
     )}
-    opacity: ${(props) => getThemeFromStatus('opacity', props.status)};
+    opacity: ${(props) => getThemeFromStatus(theme, 'opacity', props.status)};
     transform-origin: 50% top;
     transition-property: opacity, transform, background-color;
     transition-duration: 1s;
@@ -53,17 +51,17 @@ export default (appliedTheme) => {
   const Title = styled.div`
     width: 100%;
     font-size: 1.2em;
-    color: ${(props) => getThemeFromStatus('mainColor', props.status)};
+    color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
   `
 
   const Note = styled.div`
     width: 100%;
-    color: ${(props) => getThemeFromStatus('altColor', props.status)};
+    color: ${(props) => getThemeFromStatus(theme, 'altColor', props.status)};
   `
 
   const Details = styled.div`
     width: 100%;
-    color: ${(props) => getThemeFromStatus('mainColor', props.status)};
+    color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
     padding-top: 1rem;
     transition: opacity 0.3s;
     opacity: ${(props) => props.open ? '1' : '0'};
