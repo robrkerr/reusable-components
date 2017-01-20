@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Collapse from 'react-collapse'
 import { getThemeValue } from './helpers/internal'
 
 const baseTheme = {
@@ -31,10 +32,16 @@ const Container = styled.div`${({ theme, ...props }) => `
       : `background-color: ${getThemeValue(theme, 'backgroundColor', props.status)};`
   )}
   opacity: ${getThemeValue(theme, 'opacity', props.status)};
-  transition: opacity 1s, transform 1s, background-color 1s;
+  transform-origin: 50% top;
+  transition-property: opacity, transform, background-color;
+  transition-duration: 1s;
 
   & > *+* {
     margin-top: 0.5rem;
+  }
+  & > * {
+    transition-property: color;
+    transition-duration: 1s;
   }
 `}`
 
@@ -44,20 +51,49 @@ const Title = styled.div`${({ theme, ...props }) => `
   color: ${getThemeValue(theme, 'mainColor', props.status)};
 `}`
 
-const Details = styled.div`${({ theme, ...props }) => `
+const Note = styled.div`${({ theme, ...props }) => `
   width: 100%;
   color: ${getThemeValue(theme, 'altColor', props.status)};
 `}`
 
+const Details = styled.div`${({ theme, ...props }) => `
+  width: 100%;
+  color: ${getThemeValue(theme, 'mainColor', props.status)};
+  & > *+* {
+    margin-top: 0.5rem;
+  }
+`}`
+
 class Card extends Component {
+  state = { open: false }
+
+  constructor() {
+    super()
+    this.toggleOpen = this.toggleOpen.bind(this)
+  }
+
+  toggleOpen() {
+    this.setState({ open: !this.state.open })
+  }
+
   render() {
-    const { title, details, note, status, children } = this.props
+    const { title, details, note, children } = this.props
+    const { open } = this.state
+    const collapseProps = {
+      isOpened: true,
+      springConfig: { stiffness: 500, damping: (open ? 22 : 40) },
+      ...this.props,
+    }
     return (
-      <Container {...this.props}>
-        { note && <Details {...this.props}>{note}</Details> }
-        { title && <Title {...this.props}>{title}</Title> }
-        { details && <Details {...this.props}>{details}</Details> }
-        { children && <div>{children}</div> }
+      <Container {...this.props} onClick={this.toggleOpen}>
+        { note && <Note {...this.props}>{ note }</Note> }
+        { title && <Title {...this.props}>{ title }</Title> }
+        { details && <Note {...this.props}>{ details }</Note> }
+        { children &&
+          <Collapse {...collapseProps} style={{ margin: 0 }}>
+            { open && <div style={{ paddingTop: '0.5rem' }}>{ children }</div> }
+          </Collapse>
+        }
       </Container>
     )
   }

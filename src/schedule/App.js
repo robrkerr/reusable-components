@@ -41,14 +41,13 @@ const renderItem = (time, item, i) => {
 }
 
 class App extends Component {
+  state = { time: getTimeValue('11:30') }
 
   constructor() {
     super()
     this.makeEarlier = this.makeEarlier.bind(this)
     this.makeLater = this.makeLater.bind(this)
   }
-
-  state = { time: getTimeValue('11:30') }
 
   makeEarlier() {
     const { time } = this.state
