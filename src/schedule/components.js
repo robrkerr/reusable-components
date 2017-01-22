@@ -27,6 +27,7 @@ const TalkCard = componentLibrary.createCard({
   backgroundColor_highlighted: general.light.lightenByRatio(0.1).toString(),
   altColor_highlighted: general.dark.desaturateByRatio(0.3).toString(),
   padding: general.spacing,
+  collapseable: true,
 })
 
 const AdminCard = componentLibrary.createCard({

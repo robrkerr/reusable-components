@@ -1,10 +1,10 @@
-import createFixedHeightBody from '../components/FixedHeightBody'
-import createHeader from '../components/Header'
-import createMain from '../components/Main'
-import createColumn from '../components/Column'
-import createGallery from '../components/Gallery'
-import createCard from '../components/Card'
-import * as helpers from '../components/helpers/external'
+import createFixedHeightBody from './external/FixedHeightBody'
+import createHeader from './external/Header'
+import createMain from './external/Main'
+import createColumn from './external/Column'
+import createGallery from './external/Gallery'
+import createCard from './external/Card'
+import * as helpers from './external/helpers'
 
 export {
   helpers,

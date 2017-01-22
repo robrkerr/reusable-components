@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Collapse from 'react-collapse'
-import { getThemeFromStatus } from './helpers/internal'
+import { getThemeFromStatus } from '../internal/helpers'
+import createArrow from '../internal/Arrow'
 
 export default (appliedTheme) => {
 
@@ -22,11 +23,15 @@ export default (appliedTheme) => {
     altColor: 'blue',
     altColor_highlighted: undefined,
     altColor_suppressed: undefined,
+    collapseable: false,
   }
 
   const theme = { ...baseTheme, ...appliedTheme }
 
+  const Arrow = createArrow({ color: theme.mainColor, size: 1, rotation: 270 })
+
   const Container = styled.div`
+    position: relative;
     display: flex;
     flex-shrink: 0;
     flex-direction: column;
@@ -39,12 +44,18 @@ export default (appliedTheme) => {
     transform-origin: 50% top;
     transition-property: opacity, transform, background-color;
     transition-duration: 1s;
+    ${(props) => (props.expandable ? 'cursor: pointer;' : '')}
 
     & > *+* {
       margin-top: 0.5rem;
     }
     & > * {
       transition-property: color 1s;
+    }
+    & > *[data-arrow="true"] {
+      position: absolute;
+      right: 1rem;
+      top: 0.2rem;
     }
   `
 
@@ -88,15 +99,19 @@ export default (appliedTheme) => {
         springConfig: { stiffness: 400, damping: (open ? 22 : 40) },
       }
       return (
-        <Container {...this.props} onClick={this.toggleOpen}>
+        <Container expandable={children !== undefined} {...this.props} onClick={this.toggleOpen}>
           { note && <Note {...this.props}>{ note }</Note> }
           { title && <Title {...this.props}>{ title }</Title> }
           { details && <Note {...this.props}>{ details }</Note> }
-          { children &&
-            <Collapse {...collapseProps} style={{ margin: 0 }}>
-              <Details {...this.props} open={open}>{ children }</Details>
-            </Collapse>
+          { children && theme.collapseable ? (
+              <Collapse {...collapseProps} style={{ margin: 0 }}>
+                <Details {...this.props} open={open}>{ children }</Details>
+              </Collapse>
+            ) : (
+              <Details style={{ margin: 0 }} {...this.props} open>{ children }</Details>
+            )
           }
+          { theme.collapseable && children && <Arrow data-arrow flipped={open} /> }
         </Container>
       )
     }
