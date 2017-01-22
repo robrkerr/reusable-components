@@ -6,7 +6,8 @@ import {
   AdminCard,
   TalkCard,
   BreakCard,
-  Header
+  Header,
+  SpanGroup,
 } from './components'
 import schedule from './schedule'
 
@@ -66,9 +67,11 @@ class App extends Component {
       <FixedHeightBody>
         <Header>
           <span data-title>{'Decompress 2016'}</span>
-          <a onClick={this.makeEarlier}>{'<'}</a>
-          <span>{getTimeString(this.state.time)}</span>
-          <a onClick={this.makeLater}>{'>'}</a>
+          <SpanGroup>
+            <a onClick={this.makeEarlier}>{'<'}</a>
+            <span>{getTimeString(this.state.time)}</span>
+            <a onClick={this.makeLater}>{'>'}</a>
+          </SpanGroup>
         </Header>
         <Main>
           <ScrollableColumn>

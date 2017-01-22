@@ -57,6 +57,10 @@ const Header = componentLibrary.createHeader({
   paddingHorizontal: general.spacing*1.6,
 })
 
-const FixedHeightBody = componentLibrary.createFixedHeightBody()
+const FixedHeightBody = componentLibrary.createFixedHeightBody({})
 
-export { FixedHeightBody, Main, ScrollableColumn, AdminCard, TalkCard, BreakCard, Header }
+const SpanGroup = componentLibrary.createSpanGroup({
+  childSpacing: general.spacing,
+})
+
+export { FixedHeightBody, Main, ScrollableColumn, AdminCard, TalkCard, BreakCard, Header, SpanGroup }
