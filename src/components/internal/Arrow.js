@@ -12,17 +12,11 @@ export default (appliedTheme) => {
 
   const theme = { ...baseTheme, ...appliedTheme }
 
-  const Button = styled.button`
-    -webkit-appearance: none;
-    background: transparent;
-    border: 0;
-    outline: 0;
+  const Container = styled.div`
     padding: 0;
-    cursor: pointer;
     transform-origin: 50% 50%;
     transform: rotate(${theme.rotation}deg) scaleX(${props => props.flipped ? '-1' : '1'});
     transition: all 200ms ease-in-out;
-    overflow: visible;
 
     & polyline {
       fill: none;
@@ -40,10 +34,10 @@ export default (appliedTheme) => {
   `
 
   return (props) => (
-    <Button {...props}>
+    <Container {...props}>
       <svg viewBox="0 0 50 80">
         <polyline points="45,75 5,40 45,5"/>
       </svg>
-    </Button>
+    </Container>
   )
 }
