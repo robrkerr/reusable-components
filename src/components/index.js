@@ -1,4 +1,4 @@
-import createFixedHeightBody from './external/FixedHeightBody'
+import createWindow from './external/Window'
 import createHeader from './external/Header'
 import createMain from './external/Main'
 import createColumn from './external/Column'
@@ -9,7 +9,7 @@ import * as helpers from './external/helpers'
 
 export {
   helpers,
-  createFixedHeightBody,
+  createWindow,
   createHeader,
   createMain,
   createColumn,

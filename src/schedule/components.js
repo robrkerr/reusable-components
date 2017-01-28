@@ -18,6 +18,7 @@ const ScrollableColumn = componentLibrary.createColumn({
   bg: general.dark.toString(),
   innerMaxWidth: general.maxWidth,
   marginNonHighlighted: 1,
+  // raiseChildrenOnHover: false,
 })
 
 const TalkCard = componentLibrary.createCard({
@@ -54,10 +55,10 @@ const Header = componentLibrary.createHeader({
   color: general.dark.darkenByRatio(0.3).toString(),
   innerMaxWidth: general.maxWidth,
   paddingVertical: general.spacing,
-  paddingHorizontal: general.spacing*1.6,
+  paddingHorizontal: general.spacing * 1.6,
 })
 
-const FixedHeightBody = componentLibrary.createFixedHeightBody({})
+const FixedHeightBody = componentLibrary.createWindow({})
 
 const SpanGroup = componentLibrary.createSpanGroup({
   childSpacing: general.spacing,

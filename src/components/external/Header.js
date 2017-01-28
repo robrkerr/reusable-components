@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 export default (appliedTheme) => {
@@ -20,9 +20,9 @@ export default (appliedTheme) => {
     display: flex;
     width: 100%;
     background-color: ${theme.bg};
-    box-shadow: 0px 2px 5px 0px ${theme.shadowColor};
     z-index: 1;
   `
+  Container.displayName = 'Header.Container'
 
   const Inner = styled.div`
     display: flex;
@@ -38,14 +38,14 @@ export default (appliedTheme) => {
       font-size: 1.3em;
     }
   `
+  Inner.displayName = 'Header.Inner'
 
-  return class Header extends Component {
-    render() {
-      return (
-        <Container>
-          <Inner>{this.props.children}</Inner>
-        </Container>
-      )
-    }
-  }
+  const Header = (props) => (
+    <Container data-header {...props}>
+      <Inner>{props.children}</Inner>
+    </Container>
+  )
+  Header.displayName = 'Header'
+
+  return Header
 }

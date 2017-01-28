@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import styled from 'styled-components'
 
 export default (appliedTheme) => {
@@ -9,20 +8,14 @@ export default (appliedTheme) => {
 
   const theme = { ...baseTheme, ...appliedTheme }
 
-  const Container = styled.div`
+  const Main = styled.div`
     position: relative;
     display: flex;
     width: 100%;
     flex: 1;
     background-color: ${theme.bg};
   `
+  Main.displayName = 'Main'
 
-  return class Main extends Component {
-    render() {
-      return (
-        <Container>{this.props.children}</Container>
-      )
-    }
-  }
-
+  return Main
 }

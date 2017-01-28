@@ -35,6 +35,6 @@ const Header = componentLibrary.createHeader({
   paddingHorizontal: general.spacing*2,
 })
 
-const FixedHeightBody = componentLibrary.createFixedHeightBody({})
+const FixedHeightBody = componentLibrary.createWindow({})
 
 export { FixedHeightBody, Main, Gallery, Item, Header }

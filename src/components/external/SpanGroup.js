@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import styled from 'styled-components'
 
 export default (appliedTheme) => {
@@ -9,19 +8,14 @@ export default (appliedTheme) => {
 
   const theme = { ...baseTheme, ...appliedTheme }
 
-  const Container = styled.span`
+  const SpanGroup = styled.span`
     display: flex;
 
     & > *+* {
       margin-left: ${theme.childSpacing}rem;
     }
   `
+  SpanGroup.displayName = 'SpanGroup'
 
-  return class Column extends Component {
-    render() {
-      return (
-        <Container>{this.props.children}</Container>
-      )
-    }
-  }
+  return SpanGroup
 }

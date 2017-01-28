@@ -42,8 +42,9 @@ export default (appliedTheme) => {
     )}
     opacity: ${(props) => getThemeFromStatus(theme, 'opacity', props.status)};
     transform-origin: 50% top;
-    transition-property: opacity, transform, background-color;
-    transition-duration: 1s;
+    transition-property: opacity, transform, background-color, box-shadow;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
     ${(props) => (props.expandable ? 'cursor: pointer;' : '')}
 
     & > *+* {
@@ -58,28 +59,34 @@ export default (appliedTheme) => {
       top: 0.2rem;
     }
   `
+  Container.displayName = 'Card.Container'
 
   const Title = styled.div`
     width: 100%;
     font-size: 1.2em;
     color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
   `
+  Title.displayName = 'Card.Title'
 
   const Note = styled.div`
     width: 100%;
     color: ${(props) => getThemeFromStatus(theme, 'altColor', props.status)};
   `
+  Note.displayName = 'Card.Note'
 
-  const Details = styled.div`
+  const Body = styled.div`
     width: 100%;
     color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
     padding-top: 1rem;
     transition: opacity 0.3s;
     opacity: ${(props) => props.open ? '1' : '0'};
+    margin: 0;
   `
+  Body.displayName = 'Card.Body'
 
   return class Card extends Component {
     state = { open: false }
+    displayName = 'Card'
 
     constructor() {
       super()
@@ -98,17 +105,21 @@ export default (appliedTheme) => {
         keepCollapsedContent: true,
         springConfig: { stiffness: 400, damping: (open ? 22 : 40) },
       }
+      const containerProps = {
+        ...this.props,
+        expandable: theme.collapseable && children !== undefined,
+      }
       return (
-        <Container expandable={children !== undefined} {...this.props} onClick={this.toggleOpen}>
-          { note && <Note {...this.props}>{ note }</Note> }
-          { title && <Title {...this.props}>{ title }</Title> }
-          { details && <Note {...this.props}>{ details }</Note> }
+        <Container {...containerProps} onClick={this.toggleOpen}>
+          { note && <Note status={this.props.status}>{ note }</Note> }
+          { title && <Title status={this.props.status}>{ title }</Title> }
+          { details && <Note status={this.props.status}>{ details }</Note> }
           { children && theme.collapseable ? (
               <Collapse {...collapseProps} style={{ margin: 0 }}>
-                <Details {...this.props} open={open}>{ children }</Details>
+                <Body status={this.props.status} open={open}>{ children }</Body>
               </Collapse>
-            ) : (
-              <Details style={{ margin: 0 }} {...this.props} open>{ children }</Details>
+            ) : children && (
+              <Body status={this.props.status} open>{ children }</Body>
             )
           }
           { theme.collapseable && children && <Arrow data-arrow flipped={open} /> }
