@@ -23,7 +23,6 @@ export default (appliedTheme) => {
     altColor: 'blue',
     altColor_highlighted: undefined,
     altColor_suppressed: undefined,
-    collapseable: false,
   }
 
   const theme = { ...baseTheme, ...appliedTheme }
@@ -45,44 +44,48 @@ export default (appliedTheme) => {
     transition-property: opacity, transform, background-color, box-shadow;
     transition-duration: 0.3s;
     transition-timing-function: ease-out;
-    ${(props) => (props.expandable ? 'cursor: pointer;' : '')}
+    ${(props) => (props.collapseable ? 'cursor: pointer;' : '')}
 
     & > *+* {
       margin-top: 0.5rem;
     }
-    & > * {
+    & * {
       transition-property: color 1s;
     }
-    & > *[data-arrow="true"] {
+    & *[data-arrow="true"] {
       position: absolute;
-      right: 1rem;
-      top: 0.2rem;
+      right: 0.8rem;
+      top: 0.6rem;
+    }
+    & *[data-title="true"] {
+      width: 100%;
+      font-size: 1.2em;
+      color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
+    }
+    & *[data-note="true"] {
+      width: 100%;
+      color: ${(props) => getThemeFromStatus(theme, 'altColor', props.status)};
+    }
+    & *[data-collapseable="true"] {
+      width: 100%;
+      color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
+      transition: opacity 0.3s;
+      opacity: ${(props) => props.open ? '1' : '0'};
+    }
+    & *+*[data-collapser="true"] {
+      margin-top: 0;
+    }
+    & *+*[data-collapser="true"] > * {
+      padding-top: 0.5rem;
+    }
+    & *[data-collapser="true"]+* {
+      margin-top: 0;
+    }
+    & *[data-collapser="true"]:first-child > * {
+      padding-bottom: 0.5rem;
     }
   `
   Container.displayName = 'Card.Container'
-
-  const Title = styled.div`
-    width: 100%;
-    font-size: 1.2em;
-    color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
-  `
-  Title.displayName = 'Card.Title'
-
-  const Note = styled.div`
-    width: 100%;
-    color: ${(props) => getThemeFromStatus(theme, 'altColor', props.status)};
-  `
-  Note.displayName = 'Card.Note'
-
-  const Body = styled.div`
-    width: 100%;
-    color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
-    padding-top: 1rem;
-    transition: opacity 0.3s;
-    opacity: ${(props) => props.open ? '1' : '0'};
-    margin: 0;
-  `
-  Body.displayName = 'Card.Body'
 
   return class Card extends Component {
     state = { open: false }
@@ -98,8 +101,9 @@ export default (appliedTheme) => {
     }
 
     render() {
-      const { title, details, note, children } = this.props
+      const { children } = this.props
       const { open } = this.state
+      const collapseable = children.filter(c => c.props['data-collapseable']).length > 0
       const collapseProps = {
         isOpened: open,
         keepCollapsedContent: true,
@@ -107,22 +111,21 @@ export default (appliedTheme) => {
       }
       const containerProps = {
         ...this.props,
-        expandable: theme.collapseable && children !== undefined,
+        open: open,
+        collapseable,
       }
       return (
         <Container {...containerProps} onClick={this.toggleOpen}>
-          { note && <Note status={this.props.status}>{ note }</Note> }
-          { title && <Title status={this.props.status}>{ title }</Title> }
-          { details && <Note status={this.props.status}>{ details }</Note> }
-          { children && theme.collapseable ? (
-              <Collapse {...collapseProps} style={{ margin: 0 }}>
-                <Body status={this.props.status} open={open}>{ children }</Body>
-              </Collapse>
-            ) : children && (
-              <Body status={this.props.status} open>{ children }</Body>
-            )
+          {
+            children.map((child, i) => (
+              child.props['data-collapseable'] ? (
+                <Collapse key={i} data-collapser {...collapseProps}>
+                  <div>{ child }</div>
+                </Collapse>
+              ) : child
+            ))
           }
-          { theme.collapseable && children && <Arrow data-arrow flipped={open} /> }
+          { collapseable && <Arrow data-arrow flipped={open} /> }
         </Container>
       )
     }

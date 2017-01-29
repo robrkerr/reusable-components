@@ -18,22 +18,32 @@ const renderItem = (time, item, i) => {
   const finished = (time >= getTimeValue(item.finish))
   const current = !finished && (time >= getTimeValue(item.start))
   const status = (finished || current) && (finished ? 'suppressed' : 'highlighted')
-  const props = {
-    key: i,
-    title: item.title,
-    details: item.presenter,
-    note: item.start,
-    status,
-  }
   switch (item.type) {
     case 'admin': {
-      return <AdminCard data-status={status} {...props} />
+      return (
+        <AdminCard key={i} data-status={status} status={status}>
+          <div data-note>{ item.start }</div>
+          <div data-title>{ item.title }</div>
+        </AdminCard>
+      )
     }
     case 'talk': {
-      return <TalkCard data-status={status} {...props}>{item.description}</TalkCard>
+      return (
+        <TalkCard key={i} data-status={status} status={status}>
+          <div data-note>{ item.start }</div>
+          <div data-title>{ item.title }</div>
+          <div data-note>{ item.presenter }</div>
+          <div data-collapseable>{ item.description }</div>
+        </TalkCard>
+      )
     }
     case 'break': {
-      return <BreakCard data-status={status} {...props} />
+      return (
+        <BreakCard key={i} data-status={status} status={status}>
+          <div data-note>{ item.start }</div>
+          <div data-title>{ item.title }</div>
+        </BreakCard>
+      )
     }
     default: {
       return null
