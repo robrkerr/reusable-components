@@ -1,9 +1,9 @@
 
-## Responsibility divide between parents and children
+# Responsibility divide between parents and children
 
 In creating visual UI components that are reusable and sharable it is important that
 they are responsible for all the styles they should be and nothing they shouldn't be.
-In order to work with components from other libraries, this is a really important interface (from a styling point of view, it is **the** interface) between the
+In order to work with components from other libraries, this is a really important interface (from a styling point of view, it is ***the*** interface) between the
 components. Given this, here are my thoughts of where the styling responsibilities
 should reside.
 
@@ -38,7 +38,11 @@ This includes styles such as:
   control its own padding. This really relies on `box-sizing: border-box` to
   avoid this being quite complicated.
 
-### Exceptions:
+## Example
+
+To add...
+
+## A possible exception:
 - Passing in 'content only' children to a component. Here you want the parent
   to be in control of everything. Using a `data-style-me="title"` attribute:
   ```css
