@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { getShadowsForElevation } from '../internal/helpers'
 
 export default (appliedTheme) => {
 
@@ -8,6 +9,7 @@ export default (appliedTheme) => {
     bg: 'white',
     innerMaxWidth: undefined,
     shadowColor: 'hsl(0, 0%, 10%)',
+    itemElevation: 2,
   }
 
   const theme = { ...baseTheme, ...appliedTheme }
@@ -32,7 +34,7 @@ export default (appliedTheme) => {
     justify-content: center;
 
     & > * {
-      box-shadow: 2px 2px 2px 0px ${theme.shadowColor};
+      box-shadow: ${getShadowsForElevation(theme.itemElevation)};
       width: 210px;
       height: 180px;
       margin: ${theme.childSpacing * 0.5}rem;

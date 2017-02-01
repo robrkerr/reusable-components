@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+// import {Editor, ContentState} from 'draft-js'
 import {
   FixedHeightBody,
   Main,
@@ -19,7 +20,10 @@ class App extends Component {
         <Main>
           <Gallery>
             { items.map((item, i) => (
-              <Item key={i} title={item.title} details={item.details} />
+              <Item key={i}>
+                <div data-title>{ item.title }</div>
+                <div>{ item.details }</div>
+              </Item>
             )) }
           </Gallery>
         </Main>
@@ -27,5 +31,7 @@ class App extends Component {
     )
   }
 }
+
+// <Editor editorState={this.props.state} onChange={handleUpdate} />
 
 export default App
