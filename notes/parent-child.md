@@ -43,16 +43,16 @@ This includes styles such as:
 To add...
 
 ## A possible exception:
-- Passing in 'content only' children to a component. Here you want the parent
-  to be in control of everything. Using a `data-style-me="title"` attribute:
-  ```css
-  .classname > *[data-style-me="title"] {
-    font-size: 1.2em;
-    font-weight: 500;
-  }
-  ```
-  An example of this would be for a header to contain a heading and also a few
-  links and while these pieces of text (spans for example) which don't justify
-  their own components. Instead each span could be passing in as a child with a
-  `data-style-me` attribute and styled accordingly with their order being
-  preserved (or partially preserved).
+Passing in 'content only' children to a component. Here you want the parent
+to be in control of everything. Using a `data-style-me="title"` attribute:
+```css
+.classname > *[data-style-me="title"] {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+```
+An example of this would be for a header to contain a heading and also a few
+links and while these pieces of text (spans for example) which don't justify
+their own components. Instead each span could be passing in as a child with a
+`data-style-me` attribute and styled accordingly with their order being
+preserved (or partially preserved).
