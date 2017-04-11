@@ -1,0 +1,57 @@
+
+# what would it take for a visual component to be sharable/reusable
+
+it must be "contained" but "customizable"
+
+"contained"
+
+  * work like a single self-contained component
+    - that has a well defined api
+    - that abstracts the internal implementation
+    - and defines the only way that the component interacts with others
+    - (and the rest of the page/app)
+    - it should have one main job / form... not be too customisable
+    - styled components encourages this way of thinking!
+
+  * has the right responsibility divide between parent and child
+    - must be aware of its children and how to lay them out
+    - but not clash with the responsibilities of the child
+    - for example: parent = margin, sizing, maybe transform, shadow...
+                   child = padding, color, font-size, internal spacing...
+    - use data-xxx attributes (this becomes part of the api)
+
+
+"customizable"
+
+  * have high-level, abstract parameters governing the appearance
+    - general (non-specific things) like color, text, spacing, padding
+    - but maybe will need more specific customisations available too... e.g.
+        - padding vert and horz
+        - background
+
+  * look good by default
+    - contained default parameters that can be overridden
+
+  * can be configured from a set of global styling parameters - but how?
+    - themes as in styled components - which is what initially inspired me
+    - vs. create components with options as args
+    - earlier: adapting themes vs. theme convention
+    - optimisation (themes = static vs. props = dynamic)
+
+
+...but the only way to learn what this looks like in practise...
+...and that's to experiment! but experiment like you mean it!
+
+-> the idea to build stuff with only components to be generic, customisable and sharable
+      - forces you to think about global common parameters vs. things specific (internal) to component
+      - i think it's good practise for writing/thinking about css
+
+- it turns out visual components that are sharable are rarely one component / html element (but they are often two)
+- separate out the static themes with the dynamic props
+
+
+
+Features common to most UI libraries:
+  - collection / container elements are designed to have specific element types as children
+      (e.g. Menu > Menu.Item)
+  - theming 
