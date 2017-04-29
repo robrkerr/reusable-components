@@ -1,65 +1,74 @@
-import Color from 'color-js'
+import { lighten, darken, desaturate } from 'polished'
 import * as componentLibrary from '../components'
 
-const general = {
-  // https://randoma11y.com/#/?_k=v2euhx
-  light: Color('hsl(44, 46%, 69%)'),
-  dark: Color('hsl(307, 78%, 23%)'),
-  maxWidth: 500,
-  spacing: 0.8,
-}
+// THEME PARAMETERS
+
+// https://randoma11y.com/#/?_k=v2euhx
+const primaryColor = 'hsl(44, 46%, 76%)'
+const secondaryColor = 'hsl(307, 78%, 23%)'
+const maxWidth = 500
+const spacing = 0.8
+
+// DERIVED PARAMETERS
+
+const primaryColorLightened = lighten(0.14, primaryColor)
+const secondaryColorDarkened = darken(0.07, secondaryColor)
+const secondaryColorDarkenedLess = darken(0.05, secondaryColor)
+const secondaryColorDesaturated = desaturate(0.62, secondaryColor)
+const secondaryColorDesaturatedLess = desaturate(0.25, secondaryColor)
+
 
 const Main = componentLibrary.createMain({
-  bg: general.dark.toString(),
+  bg: secondaryColor,
 })
 
 const ScrollableColumn = componentLibrary.createColumn({
-  childSpacing: general.spacing,
-  bg: general.dark.toString(),
-  innerMaxWidth: general.maxWidth,
+  childSpacing: spacing,
+  bg: secondaryColor,
+  innerMaxWidth: maxWidth,
   marginNonHighlighted: 1,
 })
 
 const TalkCard = componentLibrary.createCard({
-  backgroundColor: general.light.lightenByRatio(0.3).toString(),
-  mainColor: general.dark.darkenByRatio(0.3).toString(),
-  altColor: general.dark.desaturateByRatio(0.8).toString(),
-  backgroundColor_highlighted: general.light.lightenByRatio(0.1).toString(),
-  altColor_highlighted: general.dark.desaturateByRatio(0.3).toString(),
-  padding: general.spacing,
+  backgroundColor: primaryColorLightened,
+  mainColor: secondaryColorDarkened,
+  altColor: secondaryColorDesaturated,
+  backgroundColor_highlighted: primaryColor,
+  altColor_highlighted: secondaryColorDesaturatedLess,
+  padding: spacing,
 })
 
 const AdminCard = componentLibrary.createCard({
-  backgroundColor: general.light.lightenByRatio(0.3).toString(),
-  mainColor: general.dark.darkenByRatio(0.3).toString(),
-  altColor: general.dark.desaturateByRatio(0.8).toString(),
-  backgroundColor_highlighted: general.light.lightenByRatio(0.1).toString(),
-  altColor_highlighted: general.dark.desaturateByRatio(0.3).toString(),
-  padding: general.spacing,
+  backgroundColor: primaryColorLightened,
+  mainColor: secondaryColorDarkened,
+  altColor: secondaryColorDesaturated,
+  backgroundColor_highlighted: primaryColor,
+  altColor_highlighted: secondaryColorDesaturatedLess,
+  padding: spacing,
 })
 
 const BreakCard = componentLibrary.createCard({
-  mainColor: general.light.lightenByRatio(0.3).toString(),
-  altColor: general.light.desaturateByRatio(0.8).toString(),
+  mainColor: primaryColorLightened,
+  altColor: secondaryColorDesaturated,
   background: componentLibrary.helpers.createHatchedBackground({
-    bgColor: general.dark.darkenByRatio(0.3).toString(),
-    hatchColor: general.dark.darkenByRatio(0.2).toString(),
+    bgColor: secondaryColorDarkened,
+    hatchColor: secondaryColorDarkenedLess,
   }),
-  padding: general.spacing,
+  padding: spacing,
 })
 
 const Header = componentLibrary.createHeader({
-  bg: general.light.lightenByRatio(0.1).toString(),
-  color: general.dark.darkenByRatio(0.3).toString(),
-  innerMaxWidth: general.maxWidth,
-  paddingVertical: general.spacing,
-  paddingHorizontal: general.spacing * 1.6,
+  bg: primaryColor,
+  color: secondaryColorDarkened,
+  innerMaxWidth: maxWidth,
+  paddingVertical: spacing,
+  paddingHorizontal: spacing * 1.6,
 })
 
 const FixedHeightBody = componentLibrary.createWindow({})
 
 const SpanGroup = componentLibrary.createSpanGroup({
-  childSpacing: general.spacing,
+  childSpacing: spacing,
 })
 
 export { FixedHeightBody, Main, ScrollableColumn, AdminCard, TalkCard, BreakCard, Header, SpanGroup }
