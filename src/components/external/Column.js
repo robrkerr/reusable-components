@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { getShadowsForElevation } from '../internal/helpers'
 
-export default (appliedTheme) => {
+const createComponent = (appliedTheme = {}) => {
 
   const baseTheme = {
     childSpacing: 1,
@@ -56,12 +56,19 @@ export default (appliedTheme) => {
   `
   Inner.displayName = 'Column.Inner'
 
-  const Column = (props) => (
-    <Container>
-      <Inner {...props}>{props.children}</Inner>
-    </Container>
-  )
-  Column.displayName = 'Column'
+  return class Column extends Component {
+    static customize(newAppliedTheme) {
+      return createComponent({ ...appliedTheme, ...newAppliedTheme })
+    }
 
-  return Column
+    render() {
+      return (
+        <Container>
+          <Inner {...this.props}>{this.props.children}</Inner>
+        </Container>
+      )
+    }
+  }
 }
+
+export default createComponent()

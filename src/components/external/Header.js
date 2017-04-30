@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 
-export default (appliedTheme) => {
+const createComponent = (appliedTheme = {}) => {
 
   const baseTheme = {
     childSpacing: 1,
@@ -40,12 +40,19 @@ export default (appliedTheme) => {
   `
   Inner.displayName = 'Header.Inner'
 
-  const Header = (props) => (
-    <Container data-header {...props}>
-      <Inner>{props.children}</Inner>
-    </Container>
-  )
-  Header.displayName = 'Header'
+  return class Header extends Component {
+    static customize(newAppliedTheme) {
+      return createComponent({ ...appliedTheme, ...newAppliedTheme })
+    }
 
-  return Header
+    render() {
+      return (
+        <Container data-header {...this.props}>
+          <Inner>{this.props.children}</Inner>
+        </Container>
+      )
+    }
+  }
 }
+
+export default createComponent()

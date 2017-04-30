@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { getShadowsForElevation } from '../internal/helpers'
 
-export default (appliedTheme) => {
+const createComponent = (appliedTheme = {}) => {
 
   const baseTheme = {
     childSpacing: 1,
@@ -42,6 +42,10 @@ export default (appliedTheme) => {
   `
 
   return class Gallery extends Component {
+    static customize(newAppliedTheme) {
+      return createComponent({ ...appliedTheme, ...newAppliedTheme })
+    }
+
     render() {
       return (
         <Container>
@@ -51,3 +55,5 @@ export default (appliedTheme) => {
     }
   }
 }
+
+export default createComponent()

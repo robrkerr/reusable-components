@@ -12,52 +12,42 @@ const spacing = 0.8
 // DERIVED PARAMETERS
 
 const primaryColorLightened = lighten(0.14, primaryColor)
+const primaryColorDesaturated = desaturate(0.32, primaryColor)
 const secondaryColorDarkened = darken(0.07, secondaryColor)
 const secondaryColorDarkenedLess = darken(0.05, secondaryColor)
 const secondaryColorDesaturated = desaturate(0.62, secondaryColor)
 const secondaryColorDesaturatedLess = desaturate(0.25, secondaryColor)
 
 
-const Main = componentLibrary.createMain({
+const Main = componentLibrary.Main.customize({
   bg: secondaryColor,
 })
 
-const ScrollableColumn = componentLibrary.createColumn({
+const ScrollableColumn = componentLibrary.Column.customize({
   childSpacing: spacing,
   bg: secondaryColor,
   innerMaxWidth: maxWidth,
   marginNonHighlighted: 1,
 })
 
-const TalkCard = componentLibrary.createCard({
+const BasicCard = componentLibrary.Card.customize({
   backgroundColor: primaryColorLightened,
   mainColor: secondaryColorDarkened,
   altColor: secondaryColorDesaturated,
   backgroundColor_highlighted: primaryColor,
-  altColor_highlighted: secondaryColorDesaturatedLess,
   padding: spacing,
 })
 
-const AdminCard = componentLibrary.createCard({
-  backgroundColor: primaryColorLightened,
-  mainColor: secondaryColorDarkened,
-  altColor: secondaryColorDesaturated,
-  backgroundColor_highlighted: primaryColor,
-  altColor_highlighted: secondaryColorDesaturatedLess,
-  padding: spacing,
-})
-
-const BreakCard = componentLibrary.createCard({
+const BreakCard = BasicCard.customize({
   mainColor: primaryColorLightened,
-  altColor: secondaryColorDesaturated,
+  altColor: primaryColorDesaturated,
   background: componentLibrary.helpers.createHatchedBackground({
     bgColor: secondaryColorDarkened,
     hatchColor: secondaryColorDarkenedLess,
   }),
-  padding: spacing,
 })
 
-const Header = componentLibrary.createHeader({
+const Header = componentLibrary.Header.customize({
   bg: primaryColor,
   color: secondaryColorDarkened,
   innerMaxWidth: maxWidth,
@@ -65,10 +55,19 @@ const Header = componentLibrary.createHeader({
   paddingHorizontal: spacing * 1.6,
 })
 
-const FixedHeightBody = componentLibrary.createWindow({})
-
-const SpanGroup = componentLibrary.createSpanGroup({
+const SpanGroup = componentLibrary.SpanGroup.customize({
   childSpacing: spacing,
 })
 
-export { FixedHeightBody, Main, ScrollableColumn, AdminCard, TalkCard, BreakCard, Header, SpanGroup }
+const FixedHeightBody = componentLibrary.Window
+
+export {
+  FixedHeightBody,
+  Main,
+  ScrollableColumn,
+  BasicCard as AdminCard,
+  BasicCard as TalkCard,
+  BreakCard,
+  Header,
+  SpanGroup,
+}

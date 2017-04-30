@@ -1,7 +1,8 @@
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import { getShadowsForElevation } from '../internal/helpers'
 
-export default (appliedTheme) => {
+const createComponent = (appliedTheme = {}) => {
 
   const baseTheme = {
     headerElevation: 8,
@@ -10,7 +11,7 @@ export default (appliedTheme) => {
 
   const theme = { ...baseTheme, ...appliedTheme }
 
-  const Window = styled.div`
+  const WindowInner = styled.div`
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -26,7 +27,19 @@ export default (appliedTheme) => {
       z-index: 1;
     }
   `
-  Window.displayName = 'Window'
+  WindowInner.displayName = 'Window.Inner'
 
-  return Window
+  return class Window extends Component {
+    static customize(newAppliedTheme) {
+      return createComponent({ ...appliedTheme, ...newAppliedTheme })
+    }
+
+    render() {
+      return (
+        <WindowInner {...this.props}>{this.props.children}</WindowInner>
+      )
+    }
+  }
 }
+
+export default createComponent()

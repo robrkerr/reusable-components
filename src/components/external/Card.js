@@ -4,7 +4,7 @@ import Collapse from 'react-collapse'
 import { getThemeFromStatus } from '../internal/helpers'
 import createArrow from '../internal/Arrow'
 
-export default (appliedTheme) => {
+const createComponent = (appliedTheme = {}) => {
 
   const baseTheme = {
     padding: 1,
@@ -89,11 +89,14 @@ export default (appliedTheme) => {
 
   return class Card extends Component {
     state = { open: false }
-    displayName = 'Card'
 
     constructor() {
       super()
       this.toggleOpen = this.toggleOpen.bind(this)
+    }
+
+    static customize(newAppliedTheme) {
+      return createComponent({ ...appliedTheme, ...newAppliedTheme })
     }
 
     toggleOpen() {
@@ -131,3 +134,5 @@ export default (appliedTheme) => {
     }
   }
 }
+
+export default createComponent()
