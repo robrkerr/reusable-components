@@ -22,7 +22,7 @@ class App extends Component {
             { items.map((item, i) => (
               <Item key={i}>
                 <div data-title>{ item.title }</div>
-                <div>{ item.details }</div>
+                <div data-note>{ item.details }</div>
               </Item>
             )) }
           </Gallery>

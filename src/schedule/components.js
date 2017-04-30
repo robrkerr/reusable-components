@@ -16,7 +16,6 @@ const primaryColorDesaturated = desaturate(0.32, primaryColor)
 const secondaryColorDarkened = darken(0.07, secondaryColor)
 const secondaryColorDarkenedLess = darken(0.05, secondaryColor)
 const secondaryColorDesaturated = desaturate(0.62, secondaryColor)
-const secondaryColorDesaturatedLess = desaturate(0.25, secondaryColor)
 
 // MY COMPONENTS
 

@@ -20,6 +20,7 @@ const createComponent = (appliedTheme = {}) => {
     background-color: ${theme.bg};
     overflow-y: auto;
   `
+  Container.displayName = 'Gallery.Container'
 
   const Inner = styled.div`
     position: relative;
@@ -40,6 +41,7 @@ const createComponent = (appliedTheme = {}) => {
       margin: ${theme.childSpacing * 0.5}rem;
     }
   `
+  Inner.displayName = 'Gallery.Inner'
 
   return class Gallery extends Component {
     static customize(newAppliedTheme) {

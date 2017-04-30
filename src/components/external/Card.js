@@ -50,7 +50,8 @@ const createComponent = (appliedTheme = {}) => {
       margin-top: 0.5rem;
     }
     & * {
-      transition-property: color 1s;
+      transition: color 1s;
+      color: ${(props) => getThemeFromStatus(theme, 'mainColor', props.status)};
     }
     & *[data-arrow="true"] {
       position: absolute;
